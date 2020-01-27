@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 jupyter = "*"
+autopep8 = "*"
 
 [packages]
 pandas = "*"
