@@ -97,5 +97,5 @@ python dataset.py
 
 
 ## 附录
-* [国家地区代码](https://zh.wikipedia.org/wiki/%E5%9C%8B%E5%AE%B6%E5%9C%B0%E5%8D%80%E4%BB%A3%E7%A2%BC)
+* [国家地区代码](https://zh.wikipedia.org/wiki/ISO_3166-1)
 * [2019年中华人民共和国行政区划代码](http://www.mca.gov.cn/article/sj/xzqh/2019/) (中华人民共和国民政部)

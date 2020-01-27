@@ -11,6 +11,7 @@ autopep8 = "*"
 [packages]
 pandas = "*"
 requests = "*"
+beautifulsoup4 = "*"
 
 [requires]
 python_version = "3"

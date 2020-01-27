@@ -5,6 +5,54 @@ import requests
 import pandas as pd
 
 
+# 加载静态数据
+country_code = pd.read_csv("CountryCode.csv")
+china_area_code = pd.read_csv("ChinaAreaCode.csv")
+china_area_code["code"] = china_area_code["code"].astype(str)
+# china_area_code = china_area_code[china_area_code.apply(
+#     lambda x: bool(re.match("\\d{4}00$", x.code)), axis=1)]
+china_area_code["is_province"] = china_area_code["code"].map(
+    lambda x: bool(re.match("\\d{2}0000$", x)))
+china_area_code["province_code"] = china_area_code["code"].map(
+    lambda x: re.sub("\\d{4}$", "0000", x))
+
+
+def get_country_code(name):
+    result = country_code.loc[country_code["name"].isin([name])]["code"]
+    if (len(result.values) > 0):
+        return result.values[0]
+    return ""
+
+
+def get_china_province_code(name):
+    if not name:
+        return ""
+    result = china_area_code.loc[china_area_code["is_province"]
+                                 & china_area_code["name"].str.contains(name)]["code"]  # noqa: E501
+    if (len(result.values) > 0):
+        return result.values[0]
+    return ""
+
+
+def get_china_city_code(province_code, name):
+    if not name or not province_code:
+        return ""
+    result = china_area_code.loc[china_area_code["province_code"].isin(
+        [province_code]) & china_area_code["name"].str.contains(name)]["code"]
+    if (len(result.values) > 0):
+        return result.values[0]
+    return ""
+
+
+def get_china_area_name(code, name):
+    if not code:
+        return name
+    result = china_area_code.loc[china_area_code["code"].isin([code])]["name"]
+    if (len(result.values) > 0):
+        return result.values[0]
+    return name
+
+
 # 读取腾讯新闻实时统计数据
 cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"  # noqa: E501
 cn_global_data = requests.get(cn_global_api).json()
@@ -70,6 +118,15 @@ df["confirmed"] = df["confirmed"].fillna(0).astype(int)
 df["suspected"] = df["suspected"].fillna(0).astype(int)
 df["cured"] = df["cured"].fillna(0).astype(int)
 df["dead"] = df["dead"].fillna(0).astype(int)
+# 修正数据
+df["countryCode"] = df["country"].map(get_country_code)
+df["provinceCode"] = df["province"].map(get_china_province_code)
+df["province"] = df.apply(
+    lambda x: get_china_area_name(x.provinceCode, x.province), axis=1)
+df["cityCode"] = df.apply(
+    lambda x: get_china_city_code(x.provinceCode, x.city), axis=1)
+df["city"] = df.apply(
+    lambda x: get_china_area_name(x.cityCode, x.city), axis=1)
 df.drop_duplicates(
     subset=["date", "country", "province", "city"], keep="last", inplace=True)
 df.sort_values(["date", "country", "province", "city"],
