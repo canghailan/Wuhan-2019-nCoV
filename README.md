@@ -1,5 +1,45 @@
 # 武汉 2019-nCoV 数据
 
+
+目前数据主要从腾讯新闻接口采集而来，手动定时更新。
+
+每天记录按国家、省、地级市上报数据。
+
+2020-01-27日前数据不全，正在补充中。
+
+
+## 数据地址
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.json
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
+
+
+
+## 数据说明
+
+| 列            | 说明    |
+| ------------ | ----- |
+| date         | 时间（天） |
+| country      | 国家    |
+| countryCode  | 国家代码  |
+| province     | 省     |
+| provinceCode | 省代码   |
+| city         | 市     |
+| cityCode     | 市代码   |
+| confirmed    | 确诊人数  |
+| suspected    | 疑似人数  |
+| cured        | 治愈人数  |
+| dead         | 死亡人数  |
+
+
+TODO:
+
+* 省市区名称未统一，编码字段未更新
+* 2020-01-27前按地区统计数据未更新
+* 图表
+* 与SARS对比
+
+
+
 ## 疫情通报（原始数据）
 
 * [中华人民共和国国家卫生健康委员会](http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml)
@@ -37,40 +77,20 @@
   * [新疆维吾尔自治区卫生健康委员会](http://www.xjhfpc.gov.cn/ztzl/fkxxgzbdfygz/yqtb.htm)
   * ~~[新疆生产建设兵团卫生健康委员会](http://wsj.xjbt.gov.cn/xxgk/tzgg/)~~
 
+
+
 ## 统计数据
 
 * [腾讯新闻](https://news.qq.com//zt2020/page/feiyan.htm)
   * [日统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts)
-  * [实时统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars)
-  * [实时分地区统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts)
+  * [实时全国统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars)
+  * [实时省、市统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts)
 * [丁香医生](https://3g.dxy.cn/newh5/view/pneumonia)
 
-## 数据说明
-
-| 列            | 说明    |
-| ------------ | ----- |
-| date         | 时间（天） |
-| country      | 国家    |
-| countryCode  | 国家代码  |
-| province     | 省     |
-| provinceCode | 省代码   |
-| city         | 市     |
-| cityCode     | 市代码   |
-| confirmed    | 确诊人数  |
-| suspected    | 疑似人数  |
-| cured        | 治愈人数  |
-| dead         | 死亡人数  |
-
-* CSV格式数据： Wuhan-2019-nCoV.csv
-* JSON格式数据： Wuhan-2019-nCoV.json
-
-TODO:
-
-* 省市区名称未统一，编码字段未更新
-* 2020-01-27前按地区统计数据未更新
 
 
 ## 数据更新
+
 ```shell
 export PIPENV_VENV_IN_PROJECT=1 && pipenv install
 # dataset.ipynb
