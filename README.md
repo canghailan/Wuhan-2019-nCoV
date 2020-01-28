@@ -1,9 +1,9 @@
 # 武汉 2019-nCoV 数据
 
 
-目前数据主要从腾讯新闻接口采集而来，手动定时更新。
+目前数据主要从腾讯新闻接口采集而来，每小时57分钟自动更新。
 
-每天记录按国家、省、地级市上报数据。
+记录每天按国家、省、地级市上报数据。
 
 2020-01-27日前数据不全，正在补充中。
 
@@ -91,7 +91,8 @@ TODO:
 ## 数据更新
 ```shell
 export PIPENV_VENV_IN_PROJECT=1 && pipenv install
-python dataset.py
+pipenv run python dataset.py # 手动更新
+# pipenv run python cron.py 自动定时更新
 ```
 
 
