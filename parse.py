@@ -2,7 +2,7 @@ import os
 import re
 import pandas as pd
 import yaml
-from metadata import get_china_province_code, get_china_city_code, get_china_area_name
+from metadata import get_country_code, get_china_province_code, get_china_city_code, get_china_area_name
 
 
 def read_report(fp):
@@ -41,6 +41,8 @@ def parse_report(report):
     suspected_list = parse_list(report.get("疑似详情"), [area_key, "suspected"])
     cured_list = parse_list(report.get("治愈详情"), [area_key, "cured"])
     dead_list = parse_list(report.get("死亡详情"), [area_key, "dead"])
+    foreign_confirmed_list = parse_list(report.get("国外确诊详情"), ["country", "confirmed"])
+    foreign_cured_list = parse_list(report.get("国外治愈详情"), ["country", "cured"])
 
     data = None
     if confirmed or suspected or cured or dead:
@@ -92,13 +94,32 @@ def parse_report(report):
     else:
         df = pd.DataFrame(df, columns=columns)
         df = df.append([data])
-    df["date"] = date
     df["country"] = "中国"
     df["countryCode"] = "CN"
     df["province"].fillna("", inplace=True)
     df["provinceCode"].fillna("", inplace=True)
     df["city"].fillna("", inplace=True)
     df["cityCode"].fillna("", inplace=True)
+    df["provinceCode"] = df["province"].map(get_china_province_code)
+    df["cityCode"] = df.apply(
+        lambda x: get_china_city_code(x.provinceCode, x.city), axis=1)
+
+    for data_list in [foreign_confirmed_list, foreign_cured_list]:
+        if data_list:
+            for x in data_list:
+                x["countryCode"] = get_country_code(x["country"])
+
+    foreign_df = None
+    foreign_df_list = [pd.DataFrame(x) for x in [foreign_confirmed_list, foreign_cured_list] if x]
+    for index, x in enumerate(foreign_df_list):
+        if foreign_df is None:
+            foreign_df = x
+        else:
+            foreign_df = pd.merge(foreign_df, x, on="country", how="outer", suffixes=["", f"""_{index}"""], sort=False, copy=False)
+    if foreign_df is not None:
+        df = pd.concat([df, pd.DataFrame(foreign_df, columns=columns)], sort=False)
+
+    df["date"] = date
     df.sort_values(["date", "countryCode", "provinceCode", "cityCode"], inplace=True)
     return df
 
