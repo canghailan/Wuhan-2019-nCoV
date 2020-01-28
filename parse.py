@@ -103,7 +103,7 @@ def parse_report(report):
     return df
 
 
-for r in os.listdir("report"):
-    report = read_report(os.path.join("report", r))
+for r in os.listdir("Report"):
+    report = read_report(os.path.join("Report", r))
     report_data = parse_report(report)
-    report_data.to_csv(f"""report_data/{report.get("时间")}{report.get("省", "")}.csv""", index=False)
+    report_data.to_csv(f"""ReportData/{report.get("时间")}{report.get("省", "")}.csv""", index=False)
