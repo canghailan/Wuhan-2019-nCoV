@@ -1,6 +1,7 @@
 import json
 import re
 from datetime import datetime
+from functools import lru_cache
 import requests
 import pandas as pd
 
@@ -17,6 +18,7 @@ china_area_code["province_code"] = china_area_code["code"].map(
     lambda x: re.sub("\\d{4}$", "0000", x))
 
 
+@lru_cache(maxsize=128)
 def get_country_code(name):
     result = country_code.loc[country_code["name"].isin([name])]["code"]
     if (len(result.values) > 0):
@@ -24,6 +26,7 @@ def get_country_code(name):
     return ""
 
 
+@lru_cache(maxsize=32)
 def get_china_province_code(name):
     if not name:
         return ""
@@ -34,6 +37,7 @@ def get_china_province_code(name):
     return ""
 
 
+@lru_cache(maxsize=1024)
 def get_china_city_code(province_code, name):
     if not name or not province_code:
         return ""
@@ -44,6 +48,7 @@ def get_china_city_code(province_code, name):
     return ""
 
 
+@lru_cache(maxsize=1024)
 def get_china_area_name(code, name):
     if not code:
         return name
