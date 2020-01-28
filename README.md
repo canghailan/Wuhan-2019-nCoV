@@ -1,11 +1,11 @@
-# 武汉 2019-nCoV 数据
+# 武汉 2019-nCoV 统计数据
 
 
-目前数据主要从腾讯新闻接口采集而来，每小时57分自动更新。
+2020-01-27后数据从腾讯新闻接口采集而来，每小时57分自动更新。
 
-记录每天按国家、省、地级市上报数据。
+2020-01-27前数据不全，正在补充中（已完成湖北、全国）。
 
-2020-01-27日前数据不全，正在补充中。
+按天，按国家、省、地级市记录。
 
 
 ## 数据地址
@@ -31,9 +31,18 @@
 | dead         | 死亡人数  |
 
 
+* CSV格式完整数据（数据格式较小，建议使用） Wuhan-2019-nCoV.csv
+  * CSV转JSON parseCSV.js
+* JSON格式完整数据 Wuhan-2019-nCoV.json
+* 卫健委通报数据 ReportData
+* 中国行政区划代码 ChinaAreaCode.csv
+* 国家地区代码（ISO_3166-1） CountryCode.csv
+
+
 TODO:
 
 * 2020-01-27前按地区统计数据未更新
+* GeoJSON
 * 图表
 * 与SARS对比
 
@@ -78,7 +87,7 @@ TODO:
 
 
 
-## 统计数据
+## 数据来源
 
 * [腾讯新闻](https://news.qq.com//zt2020/page/feiyan.htm)
   * [日统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts)
