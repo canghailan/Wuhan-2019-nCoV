@@ -24,7 +24,7 @@ def get_country_code(name):
     return ""
 
 
-@lru_cache(maxsize=32)
+@lru_cache(maxsize=64)
 def get_china_province_code(name):
     if not name:
         return ""
