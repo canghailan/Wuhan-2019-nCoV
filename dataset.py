@@ -137,6 +137,6 @@ df["city"] = df.apply(
     lambda x: get_china_area_name(x.cityCode, x.city), axis=1)
 df.drop_duplicates(
     subset=["date", "country", "province", "city"], keep="last", inplace=True)
-df.sort_values(["date", "country", "province", "city"], na_position="first", inplace=True)
+df.sort_values(["date", "countryCode", "provinceCode", "cityCode"], inplace=True)
 df.to_csv(csv_file, index=False, encoding='utf-8')
 df.to_json(json_file, orient="records", force_ascii=False)
