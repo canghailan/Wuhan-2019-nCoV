@@ -10,8 +10,6 @@ import pandas as pd
 country_code = pd.read_csv("CountryCode.csv")
 china_area_code = pd.read_csv("ChinaAreaCode.csv")
 china_area_code["code"] = china_area_code["code"].astype(str)
-# china_area_code = china_area_code[china_area_code.apply(
-#     lambda x: bool(re.match("\\d{4}00$", x.code)), axis=1)]
 china_area_code["is_province"] = china_area_code["code"].map(
     lambda x: bool(re.match("\\d{2}0000$", x)))
 china_area_code["province_code"] = china_area_code["code"].map(
@@ -30,8 +28,7 @@ def get_country_code(name):
 def get_china_province_code(name):
     if not name:
         return ""
-    result = china_area_code.loc[china_area_code["is_province"]
-                                 & china_area_code["name"].str.contains(name)]["code"]  # noqa: E501
+    result = china_area_code.loc[china_area_code["is_province"] & china_area_code["name"].str.contains(name)]["code"]
     if (len(result.values) > 0):
         return result.values[0]
     return ""
@@ -41,10 +38,17 @@ def get_china_province_code(name):
 def get_china_city_code(province_code, name):
     if not name or not province_code:
         return ""
-    result = china_area_code.loc[china_area_code["province_code"].isin(
-        [province_code]) & china_area_code["name"].str.contains(name)]["code"]
+    result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & china_area_code["name"].str.contains(name)]["code"]
     if (len(result.values) > 0):
         return result.values[0]
+
+    for i in range(1, len(name)):
+        fuzzy_name = name[:-i] + ".*" + ".*".join(name[-i:])
+        result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & china_area_code["name"].str.match(fuzzy_name)]["code"]
+        if (len(result.values) > 0):
+            # print(f"""{province_code} {fuzzy_name} -> {",".join(result.values)}""")
+            return result.values[0]
+
     return ""
 
 
@@ -59,12 +63,11 @@ def get_china_area_name(code, name):
 
 
 # 读取腾讯新闻实时统计数据
-cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"  # noqa: E501
+cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"
 cn_global_data = requests.get(cn_global_api).json()
 cn_global = json.loads(cn_global_data["data"])
 cn_global_df = pd.DataFrame(cn_global)
-cn_global_df.drop(columns=["recentTime", "useTotal",
-                           "hintWords"], inplace=True)
+cn_global_df.drop(columns=["recentTime", "useTotal", "hintWords"], inplace=True)
 cn_global_df.rename(columns={
     "area": "province",
     "confirmCount": "confirmed",
@@ -77,7 +80,7 @@ cn_global_df["country"] = "中国"
 
 
 # 读取腾讯新闻实时分地区数据
-cn_area_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts"  # noqa: E501
+cn_area_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts"
 cn_area_data = requests.get(cn_area_api).json()
 cn_area = json.loads(cn_area_data["data"])
 cn_area_df = pd.DataFrame(cn_area)
@@ -91,7 +94,7 @@ cn_area_df["date"] = datetime.today().strftime('%Y-%m-%d')
 
 
 # 读取腾讯新闻日统计数据
-cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"  # noqa: E501
+cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
 cn_day_data = requests.get(cn_day_api).json()
 cn_day = json.loads(cn_day_data["data"])
 cn_day_df = pd.DataFrame(cn_day)
@@ -134,7 +137,6 @@ df["city"] = df.apply(
     lambda x: get_china_area_name(x.cityCode, x.city), axis=1)
 df.drop_duplicates(
     subset=["date", "country", "province", "city"], keep="last", inplace=True)
-df.sort_values(["date", "country", "province", "city"],
-               na_position="first", inplace=True)
+df.sort_values(["date", "country", "province", "city"], na_position="first", inplace=True)
 df.to_csv(csv_file, index=False, encoding='utf-8')
 df.to_json(json_file, orient="records", force_ascii=False)
