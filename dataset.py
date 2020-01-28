@@ -140,3 +140,5 @@ df.drop_duplicates(
 df.sort_values(["date", "countryCode", "provinceCode", "cityCode"], inplace=True)
 df.to_csv(csv_file, index=False, encoding='utf-8')
 df.to_json(json_file, orient="records", force_ascii=False)
+
+print(f"""{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}数据更新成功""")
