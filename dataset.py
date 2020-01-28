@@ -38,13 +38,13 @@ def get_china_province_code(name):
 def get_china_city_code(province_code, name):
     if not name or not province_code:
         return ""
-    result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & china_area_code["name"].str.contains(name)]["code"]
+    result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & ~china_area_code["is_province"] & china_area_code["name"].str.contains(name)]["code"]
     if (len(result.values) > 0):
         return result.values[0]
 
     for i in range(1, len(name)):
         fuzzy_name = name[:-i] + ".*" + ".*".join(name[-i:])
-        result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & china_area_code["name"].str.match(fuzzy_name)]["code"]
+        result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & ~china_area_code["is_province"] & china_area_code["name"].str.match(fuzzy_name)]["code"]
         if (len(result.values) > 0):
             # print(f"""{province_code} {fuzzy_name} -> {",".join(result.values)}""")
             return result.values[0]
