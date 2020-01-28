@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from datetime import datetime
 import requests
@@ -70,9 +71,10 @@ csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
 
 df = pd.read_csv(csv_file)
+report_df_list = [pd.read_csv(os.path.join("ReportData", x)) for x in os.listdir("ReportData")]
 df["date"] = df["date"].map(
     lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
-df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df], sort=False)
+df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df] + report_df_list, sort=False)
 df["country"].fillna("", inplace=True)
 df["countryCode"].fillna("", inplace=True)
 df["province"].fillna("", inplace=True)
