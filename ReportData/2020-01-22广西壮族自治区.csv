@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,广西壮族自治区,450000,,,2,1,,
+2020-01-22,中国,CN,广西壮族自治区,450000,柳州市,450200,,1,,
+2020-01-22,中国,CN,广西壮族自治区,450000,梧州市,450400,1,,,
+2020-01-22,中国,CN,广西壮族自治区,450000,北海市,450500,1,,,
