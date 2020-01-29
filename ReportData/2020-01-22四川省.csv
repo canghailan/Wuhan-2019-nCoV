@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,四川省,510000,,,5,2,,
+2020-01-22,中国,CN,四川省,510000,成都市,510100,2,2,,
+2020-01-22,中国,CN,四川省,510000,绵阳市,510700,2,,,
+2020-01-22,中国,CN,四川省,510000,广安市,511600,1,,,
