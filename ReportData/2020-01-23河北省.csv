@@ -1,0 +1,4 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-23,中国,CN,河北省,130000,,,2,,,1
+2020-01-23,中国,CN,河北省,130000,石家庄市,130100,1,,,
+2020-01-23,中国,CN,河北省,130000,沧州市,130900,1,,,1

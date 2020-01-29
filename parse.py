@@ -30,8 +30,7 @@ def parse_list(text, keys):
 
 def parse_report(report):
     date = str(report["时间"])
-    area_key = "province"
-    province = report.get("省")
+    province = report.get("省", "")
     confirmed = parse_int(report.get("确诊"))
     suspected = parse_int(report.get("疑似"))
     cured = parse_int(report.get("治愈"))
@@ -44,25 +43,25 @@ def parse_report(report):
     foreign_confirmed_list = parse_list(report.get("国外确诊详情"), ["country", "confirmed"])
     foreign_cured_list = parse_list(report.get("国外治愈详情"), ["country", "cured"])
 
-    data = None
-    if confirmed or suspected or cured or dead:
-        data = {
-            "confirmed": confirmed,
-            "suspected": suspected,
-            "cured": cured,
-            "dead": dead
-        }
-        if province:
-            data["provinceCode"] = get_china_province_code(province)
-            data["province"] = get_china_area_name(data["provinceCode"], province)
+    provinceCode = get_china_province_code(province) if province else ""
+    province = get_china_area_name(provinceCode, province) if provinceCode else ""
+
+    data = {
+        "provinceCode": provinceCode,
+        "province": province,
+        "confirmed": confirmed,
+        "suspected": suspected,
+        "cured": cured,
+        "dead": dead
+    }
 
     for data_list in [confirmed_list, suspected_list, cured_list, dead_list]:
         if data_list:
             for x in data_list:
                 if province:
-                    x["provinceCode"] = get_china_province_code(province)
-                    x["province"] = get_china_area_name(x["provinceCode"], province)
-                    x["cityCode"] = get_china_city_code(x["provinceCode"], x["city"])
+                    x["provinceCode"] = provinceCode
+                    x["province"] = province
+                    x["cityCode"] = get_china_city_code(provinceCode, x["city"])
                     x["city"] = get_china_area_name(x["cityCode"], x["city"])
                 else:
                     x["provinceCode"] = get_china_province_code(x["province"])
@@ -96,8 +95,8 @@ def parse_report(report):
         df = df.append([data])
     df["country"] = "中国"
     df["countryCode"] = "CN"
-    df["province"].fillna("", inplace=True)
-    df["provinceCode"].fillna("", inplace=True)
+    df["province"].fillna(province, inplace=True)
+    df["provinceCode"].fillna(provinceCode, inplace=True)
     df["city"].fillna("", inplace=True)
     df["cityCode"].fillna("", inplace=True)
     df["provinceCode"] = df["province"].map(get_china_province_code)
