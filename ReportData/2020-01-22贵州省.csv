@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,贵州省,520000,,,3,,,
+2020-01-22,中国,CN,贵州省,520000,贵阳市,520100,1,,,
+2020-01-22,中国,CN,贵州省,520000,铜仁市,520600,1,,,
+2020-01-22,中国,CN,贵州省,520000,黔南布依族苗族自治州,522700,1,,,
