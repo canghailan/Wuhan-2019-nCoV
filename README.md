@@ -3,7 +3,7 @@
 
 2020-01-27后数据从腾讯新闻接口采集而来，每小时57分自动更新。
 
-2020-01-27前数据不全，正在补充中（已完成湖北、全国）。
+2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西）。
 
 按天，按国家、省、地级市记录。
 
@@ -56,7 +56,7 @@ TODO:
   * [北京市卫生健康委员会](http://wjw.beijing.gov.cn/wjwh/ztzl/xxgzbd/)
   * [天津市卫生健康委员会](http://wsjk.tj.gov.cn/col/col87/index.html)
   * [河北省卫生健康委员会](http://wsjkw.hebei.gov.cn/index.do?cid=326&templet=list)
-  * [山西省卫生健康委员会](http://wjw.shanxi.gov.cn/fangkond/index.hrh)
+  * [山西省卫生健康委员会](http://wjw.shanxi.gov.cn/xingfew/index.hrh)
   * [内蒙古自治区卫生健康委员会](http://wjw.nmg.gov.cn/ztlm/2016n/xxgzbdgrdfyyqfk/index.shtml)
   * [辽宁省卫生健康委员会](http://wsjk.ln.gov.cn/wst_zdzt/xxgzbd/yqtb/)
   * [吉林省卫生健康委员会](http://www.jl.gov.cn/szfzt/jlzxd/yqtb/)
