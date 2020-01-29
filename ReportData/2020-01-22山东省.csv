@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,山东省,370000,,,6,,,
+2020-01-22,中国,CN,山东省,370000,青岛市,370200,3,,,
+2020-01-22,中国,CN,山东省,370000,威海市,371000,1,,,
+2020-01-22,中国,CN,山东省,370000,临沂市,371300,2,,,
