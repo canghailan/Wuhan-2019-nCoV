@@ -127,3 +127,27 @@ for r in os.listdir("Report"):
     report = read_report(os.path.join("Report", r))
     report_data = parse_report(report)
     report_data.to_csv(f"""ReportData/{report.get("时间")}{report.get("省", "")}.csv""", index=False)
+
+
+# 合并通报数据
+csv_file = "Wuhan-2019-nCoV.csv"
+json_file = "Wuhan-2019-nCoV.json"
+dtype = {"provinceCode": str, "cityCode": str}
+df = pd.read_csv(csv_file, dtype=dtype)
+report_df_list = [pd.read_csv(os.path.join("ReportData", x), dtype=dtype) for x in sorted(os.listdir("ReportData"))]
+df = pd.concat([df] + report_df_list, sort=False)
+df["country"].fillna("", inplace=True)
+df["countryCode"].fillna("", inplace=True)
+df["province"].fillna("", inplace=True)
+df["provinceCode"].fillna("", inplace=True)
+df["city"].fillna("", inplace=True)
+df["cityCode"].fillna("", inplace=True)
+df["confirmed"] = df["confirmed"].fillna(0).astype(int)
+df["suspected"] = df["suspected"].fillna(0).astype(int)
+df["cured"] = df["cured"].fillna(0).astype(int)
+df["dead"] = df["dead"].fillna(0).astype(int)
+df.drop_duplicates(
+    subset=["date", "country", "province", "city"], keep="last", inplace=True)
+df.sort_values(["date", "countryCode", "provinceCode", "cityCode", "city"], inplace=True)
+df.to_csv(csv_file, index=False, encoding='utf-8')
+df.to_json(json_file, orient="records", force_ascii=False)
