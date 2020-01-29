@@ -1,9 +1,9 @@
 # 武汉 2019-nCoV 统计数据
 
 
-2020-01-27后数据从腾讯新闻接口采集而来，每小时57分自动更新。
+2020-01-28前数据来自国家、各省市卫健委疫情通告。
 
-2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西、河北、辽宁、吉林、黑龙江、上海、江苏、浙江、安徽、福建、内蒙古、江西、山东、湖南、广东、广西、海南、重庆、四川、贵州、云南、西藏、陕西、甘肃）。
+2020-01-29后数据从腾讯新闻接口采集而来，每小时57分自动更新。
 
 按天，按国家、省、地级市记录。
 
@@ -31,17 +31,19 @@
 | dead         | 死亡人数  |
 
 
-* CSV格式完整数据（数据格式较小，建议使用） Wuhan-2019-nCoV.csv
-  * CSV转JSON parseCSV.js
-* JSON格式完整数据 Wuhan-2019-nCoV.json
-* 卫健委通报数据 ReportData
-* 中国行政区划代码 ChinaAreaCode.csv
-* 国家地区代码（ISO_3166-1） CountryCode.csv
+```shell
+Report # 卫健委通报数据
+ReportData # 卫健委通报整理后数据
+Wuhan-2019-nCoV.csv # CSV格式完整数据（数据格式较小，建议使用）
+Wuhan-2019-nCoV.json # JSON格式完整数据
+parseCSV.js # CSV转JSON
+ChinaAreaCode.csv # 中国行政区划代码，来自中华人民共和国民政部
+CountryCode.csv # 国家地区代码（ISO_3166-1）
+```
 
 
 TODO:
 
-* 2020-01-27前按地区统计数据未更新
 * GeoJSON
 * 图表
 * 与SARS对比
@@ -83,7 +85,7 @@ TODO:
   * [青海省卫生健康委员会](https://wsjkw.qinghai.gov.cn/zhxw/xwzx/index.html)
   * [宁夏回族自治区卫生健康委员会](http://wsjkw.nx.gov.cn/yqfkdt/yqsd1.htm)
   * [新疆维吾尔自治区卫生健康委员会](http://www.xjhfpc.gov.cn/ztzl/fkxxgzbdfygz/yqtb.htm)
-  * ~~[新疆生产建设兵团卫生健康委员会](http://wsj.xjbt.gov.cn/xxgk/tzgg/)~~
+  * ~~[新疆生产建设兵团卫生健康委员会](http://wsj.xjbt.gov.cn/xxgk/tzgg/)~~ 数据合并至新疆维吾尔自治区卫生健康委员会
 
 
 

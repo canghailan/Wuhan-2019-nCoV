@@ -1,0 +1,3 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-27,中国,CN,青海省,630000,,,6,,,
+2020-01-27,中国,CN,青海省,630000,西宁市,630100,6,,,
