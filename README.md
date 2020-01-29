@@ -1,17 +1,21 @@
-# 武汉 2019-nCoV 统计数据
+# 武汉 2019-nCoV 全量每日统计数据（支持接口读取）
 
+本项目记录了2020-01-10日至今，每日精确到市的确诊、疑似、治愈、死亡人数。
 
 2020-01-28前数据来自国家、各省市卫健委疫情通告。
 
-2020-01-29后数据从腾讯新闻接口采集而来，每小时57分自动更新。
+2020-01-29后数据从腾讯新闻接口采集，每小时57分自动更新。
 
-按天，按国家、省、地级市记录。
+目前接口只提供全量数据，需自行在客户端进行预处理，过滤出所需数据。
 
 
-## 数据地址
-* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.json
+## 数据接口
 * https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.json
 
+### 省市区、国家代码
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/ChinaAreaCode.csv
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/CountryCode.csv
 
 
 ## 数据说明
