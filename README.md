@@ -3,7 +3,7 @@
 
 2020-01-27后数据从腾讯新闻接口采集而来，每小时57分自动更新。
 
-2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西、河北、辽宁、吉林、黑龙江、上海、江苏、浙江、安徽、福建、内蒙古、江西、山东、湖南、广东、广西、海南）。
+2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西、河北、辽宁、吉林、黑龙江、上海、江苏、浙江、安徽、福建、内蒙古、江西、山东、湖南、广东、广西、海南、重庆）。
 
 按天，按国家、省、地级市记录。
 
@@ -77,7 +77,7 @@ TODO:
   * [四川省卫生健康委员会](http://wsjkw.sc.gov.cn/scwsjkw/gggs/tygl.shtml)
   * [贵州省卫生健康委员会](http://www.gzhfpc.gov.cn/ztzl_500663/xxgzbdgrdfyyqfk/yqdt/)
   * [云南省卫生健康委员会](http://ynswsjkw.yn.gov.cn/wjwWebsite/web/col?id=UU157976428326282067&cn=xxgzbd&pcn=ztlm&pid=UU145102906505319731)
-  * 西藏自治区卫生健康委员会
+  * [西藏自治区卫生健康委员会](http://wjw.xizang.gov.cn/xwzx/wsjkdt/) [疫情](http://wjw.xizang.gov.cn/xwzx/wsjkdt/202001/t20200129_131159.html)
   * [陕西省卫生健康委员会](http://sxwjw.shaanxi.gov.cn/col/col863/index.html)
   * [甘肃省卫生健康委员会](http://wsjk.gansu.gov.cn/channel/10910/index.html)
   * [青海省卫生健康委员会](https://wsjkw.qinghai.gov.cn/zhxw/xwzx/index.html)
