@@ -1,5 +1,4 @@
 import json
-import os
 import re
 from datetime import datetime
 import requests
@@ -52,18 +51,18 @@ cn_area_df["date"] = datetime.today().strftime('%Y-%m-%d')
 
 
 # 读取腾讯新闻日统计数据
-cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
-cn_day_data = requests.get(cn_day_api).json()
-cn_day = json.loads(cn_day_data["data"])
-cn_day_df = pd.DataFrame(cn_day)
-cn_day_df.rename(columns={
-    "confirm": "confirmed",
-    "suspect": "suspected",
-    "heal": "cured"
-}, inplace=True)
-cn_day_df["date"] = cn_day_df["date"].map(
-    lambda x: "2020-" + x.replace(".", "-"))
-cn_day_df["country"] = "中国"
+# cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
+# cn_day_data = requests.get(cn_day_api).json()
+# cn_day = json.loads(cn_day_data["data"])
+# cn_day_df = pd.DataFrame(cn_day)
+# cn_day_df.rename(columns={
+#     "confirm": "confirmed",
+#     "suspect": "suspected",
+#     "heal": "cured"
+# }, inplace=True)
+# cn_day_df["date"] = cn_day_df["date"].map(
+#     lambda x: "2020-" + x.replace(".", "-"))
+# cn_day_df["country"] = "中国"
 
 
 # 更新数据
@@ -71,10 +70,11 @@ csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
 
 df = pd.read_csv(csv_file)
-report_df_list = [pd.read_csv(os.path.join("ReportData", x)) for x in sorted(os.listdir("ReportData"))]
+# report_df_list = [pd.read_csv(os.path.join("ReportData", x)) for x in sorted(os.listdir("ReportData"))]
 df["date"] = df["date"].map(
     lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
-df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df] + report_df_list, sort=False)
+# df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df] + report_df_list, sort=False)
+df = pd.concat([df, cn_area_df, cn_global_df], sort=False)
 df["country"].fillna("", inplace=True)
 df["countryCode"].fillna("", inplace=True)
 df["province"].fillna("", inplace=True)
