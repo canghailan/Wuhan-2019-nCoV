@@ -6,12 +6,17 @@
 
 2020-01-29后数据从腾讯新闻接口采集，每小时57分自动更新。
 
+数据以CSV格式存储在版本库中，同时提供JSON格式数据。建议读取CSV格式数据（体积较小），通过[脚本](https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/parseCSV.js)转换为JSON格式。
+
 目前接口只提供全量数据，需自行在客户端进行预处理，过滤出所需数据。
 
 
 ## 数据接口
 * https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
 * https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.json
+
+### CSV转JSON
+* https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/parseCSV.js
 
 ### 省市区、国家代码
 * https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/ChinaAreaCode.csv
