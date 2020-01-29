@@ -119,7 +119,7 @@ def parse_report(report):
         df = pd.concat([df, pd.DataFrame(foreign_df, columns=columns)], sort=False)
 
     df["date"] = date
-    df.sort_values(["date", "countryCode", "provinceCode", "cityCode"], inplace=True)
+    df.sort_values(["date", "countryCode", "provinceCode", "cityCode", "city"], inplace=True)
     return df
 
 
