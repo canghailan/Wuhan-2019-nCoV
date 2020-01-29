@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,江西省,360000,,,3,,,
+2020-01-22,中国,CN,江西省,360000,南昌市,360100,1,,,
+2020-01-22,中国,CN,江西省,360000,萍乡市,360300,1,,,
+2020-01-22,中国,CN,江西省,360000,抚州市,361000,1,,,
