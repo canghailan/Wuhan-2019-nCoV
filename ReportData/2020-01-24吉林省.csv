@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-24,中国,CN,吉林省,220000,,,4,,,
+2020-01-24,中国,CN,吉林省,220000,长春市,220100,1,,,
+2020-01-24,中国,CN,吉林省,220000,吉林市,220200,2,,,
+2020-01-24,中国,CN,吉林省,220000,松原市,220700,1,,,
