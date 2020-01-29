@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-24,中国,CN,云南省,530000,,,5,,,
+2020-01-24,中国,CN,云南省,530000,昆明市,530100,3,,,
+2020-01-24,中国,CN,云南省,530000,丽江市,530700,1,,,
+2020-01-24,中国,CN,云南省,530000,西双版纳傣族自治州,532800,1,,,
