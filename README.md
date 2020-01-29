@@ -3,7 +3,7 @@
 
 2020-01-27后数据从腾讯新闻接口采集而来，每小时57分自动更新。
 
-2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西、河北、辽宁、吉林、黑龙江、上海、江苏、浙江、安徽、福建、内蒙古、江西、山东）。
+2020-01-27前数据不全，正在补充中（已完成湖北、全国、北京、天津、山西、河北、辽宁、吉林、黑龙江、上海、江苏、浙江、安徽、福建、内蒙古、江西、山东、湖南）。
 
 按天，按国家、省、地级市记录。
 
@@ -68,8 +68,8 @@ TODO:
   * [福建省卫生健康委员会](http://wjw.fujian.gov.cn/xxgk/gzdt/wsjsyw/)
   * [江西省卫生健康委员会](http://hc.jiangxi.gov.cn/xwzx/wjxw/index.shtml)
   * [山东省卫生健康委员会](http://wsjkw.shandong.gov.cn/wzxxgk/zwgg/)
-  * ~~[河南省卫生健康委员会](http://wsjkw.henan.gov.cn/channels/854.shtml)~~
-  * ~~[湖南省卫生健康委员会](http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html)~~
+  * ~~[河南省卫生健康委员会](http://wsjkw.henan.gov.cn/channels/854.shtml)~~ 无数据
+  * [湖南省卫生健康委员会](http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html)
   * [广东省卫生健康委员会](http://wsjkw.gd.gov.cn/xxgzbdfk/yqtb/)
   * [广西壮族自治区卫生健康委员会](http://wsjkw.gxzf.gov.cn/zhuantiqu/ncov/)
   * [海南省卫生健康委员会](http://wst.hainan.gov.cn/swjw/rdzt/yqfk/)
