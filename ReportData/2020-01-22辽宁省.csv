@@ -1,0 +1,4 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,辽宁省,210000,,,2,,,
+2020-01-22,中国,CN,辽宁省,210000,沈阳市,210100,1,,,
+2020-01-22,中国,CN,辽宁省,210000,大连市,210200,1,,,
