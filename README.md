@@ -123,3 +123,4 @@ pipenv run python dataset.py # 手动更新
 ## 附录
 * [国家地区代码](https://zh.wikipedia.org/wiki/ISO_3166-1)
 * [2019年中华人民共和国行政区划代码](http://www.mca.gov.cn/article/sj/xzqh/2019/) (中华人民共和国民政部)
+* [WHO SARS 统计数据](https://www.who.int/csr/sars/country/en/)
