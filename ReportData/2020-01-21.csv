@@ -1,5 +1,5 @@
 date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
-2020-01-21,中国,CN,,,,,440,37,,9
+2020-01-21,中国,CN,,,,,440,37,25,9
 2020-01-21,中国,CN,北京市,110000,,,10,,,
 2020-01-21,中国,CN,天津市,120000,,,2,,,
 2020-01-21,中国,CN,山西省,140000,,,,1,,
