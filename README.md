@@ -31,6 +31,16 @@
 * https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/CountryCode.csv
 
 
+## 数据使用示例
+```javascript
+let list = parseCSV(`date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2019-12-01,中国,CN,,,,,1,0,0,0
+2019-12-01,中国,CN,湖北省,420000,,,1,0,0,0
+2019-12-01,中国,CN,湖北省,420000,武汉市,420100,1,0,0,0`, 
+{confirmed:Number,suspected:Number,cured:Number,dead:Number});
+```
+
+
 ## 数据说明
 
 | 字段           | 说明    |
