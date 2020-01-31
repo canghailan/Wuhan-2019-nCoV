@@ -47,6 +47,12 @@ cn_area_df.rename(columns={
     "suspect": "suspected",
     "heal": "cured"
 }, inplace=True)
+cn_province_df = pd.DataFrame(cn_area_df[cn_area_df.country == "中国"]
+                              .groupby(["country", "province"], as_index=False)
+                              .sum())
+cn_area_df = pd.concat([cn_area_df, cn_province_df], sort=False)
+cn_area_df.drop_duplicates(
+    subset=["country", "province", "city"], inplace=True)
 cn_area_df["date"] = datetime.today().strftime('%Y-%m-%d')
 
 
