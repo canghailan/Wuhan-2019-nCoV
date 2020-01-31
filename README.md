@@ -6,9 +6,9 @@
 
 2020-01-02至2020-01-10数据无变化。
 
-2020-01-10至2020-01-28数据来自国家、各省、武汉市卫健委疫情通告（未找到河南省疫情通告，数据缺失/部分采用腾讯新闻数据）。
+2020-01-10至2020-01-30数据来自国家、各省、武汉市卫健委疫情通告。
 
-2020-01-29后数据从腾讯新闻接口采集，每小时57分自动更新。
+2020-01-31后数据从腾讯新闻接口采集，每小时57分自动更新。
 
 数据以CSV格式存储在版本库中，同时提供JSON格式数据。
 
@@ -83,11 +83,11 @@ TODO:
 * [中华人民共和国国家卫生健康委员会](http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml)
   * [湖北省卫生健康委员会](http://wjw.hubei.gov.cn/bmdt/ztzl/fkxxgzbdgrfyyq/xxfb/)
     * [武汉市卫生健康委员会](http://wjw.wuhan.gov.cn/front/web/list3rd/no/802)
-  * [北京市卫生健康委员会](http://wjw.beijing.gov.cn/wjwh/ztzl/xxgzbd/)
+  * [北京市卫生健康委员会](http://wjw.beijing.gov.cn/wjwh/ztzl/xxgzbd/gzbdyqtb/)
   * [天津市卫生健康委员会](http://wsjk.tj.gov.cn/col/col87/index.html)
   * [河北省卫生健康委员会](http://wsjkw.hebei.gov.cn/index.do?cid=326&templet=list)
   * [山西省卫生健康委员会](http://wjw.shanxi.gov.cn/xingfew/index.hrh)
-  * [内蒙古自治区卫生健康委员会](http://wjw.nmg.gov.cn/ztlm/2016n/xxgzbdgrdfyyqfk/index.shtml)
+  * [内蒙古自治区卫生健康委员会](http://wjw.nmg.gov.cn/ztlm/2016n/xxgzbdgrdfyyqfk/yqtb/index.shtml)
   * [辽宁省卫生健康委员会](http://wsjk.ln.gov.cn/wst_zdzt/xxgzbd/yqtb/)
   * [吉林省卫生健康委员会](http://www.jl.gov.cn/szfzt/jlzxd/yqtb/)
   * [黑龙江省卫生健康委员会](http://wsjkw.hlj.gov.cn/index.php/Home/Zwgk/all/typeid/42)
@@ -98,7 +98,7 @@ TODO:
   * [福建省卫生健康委员会](http://wjw.fujian.gov.cn/xxgk/gzdt/wsjsyw/)
   * [江西省卫生健康委员会](http://hc.jiangxi.gov.cn/xwzx/wjxw/index.shtml)
   * [山东省卫生健康委员会](http://wsjkw.shandong.gov.cn/wzxxgk/zwgg/)
-  * ~~[河南省卫生健康委员会](http://wsjkw.henan.gov.cn/channels/854.shtml)~~ 无数据
+  * [河南省卫生健康委员会](http://wsjkw.henan.gov.cn/channels/854.shtml)
   * [湖南省卫生健康委员会](http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html)
   * [广东省卫生健康委员会](http://wsjkw.gd.gov.cn/xxgzbdfk/yqtb/)
   * [广西壮族自治区卫生健康委员会](http://wsjkw.gxzf.gov.cn/zhuantiqu/ncov/)
