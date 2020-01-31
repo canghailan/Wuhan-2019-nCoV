@@ -1,8 +1,10 @@
 # 2019-nCoV 全量每日统计数据（支持接口读取）
 
-本项目记录了2020-01-10日至今，每日精确到国家、省、市的确诊、疑似、治愈、死亡人数。
+本项目记录了2019-12-01日至今，每日精确到国家、省、市的确诊、疑似、治愈、死亡人数。
 
-2020-01-28前数据来自国家、各省市卫健委疫情通告（未找到河南省疫情通告，数据缺失）。
+2019-12-01至2020-01-02数据来自(asycns)[https://github.com/asycns]提供的[实验室确诊数据](https://github.com/canghailan/Wuhan-2019-nCoV/issues/1)([原文](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30183-5/fulltext))。
+
+2020-01-19至2020-01-28前数据来自国家、各省市卫健委疫情通告（未找到河南省疫情通告，数据缺失）。
 
 2020-01-29后数据从腾讯新闻接口采集，每小时57分自动更新。
 
@@ -47,6 +49,7 @@
 ```shell
 Report # 卫健委通报数据
 ReportData # 卫健委通报整理后数据
+PIIS0140673620301835.pdf # 2019-12-01至2019-01-02实验室数据
 Wuhan-2019-nCoV.csv # CSV格式完整数据（数据格式较小，建议使用）
 Wuhan-2019-nCoV.json # JSON格式完整数据
 parseCSV.js # CSV转JSON
@@ -100,6 +103,8 @@ TODO:
   * [新疆维吾尔自治区卫生健康委员会](http://www.xjhfpc.gov.cn/ztzl/fkxxgzbdfygz/yqtb.htm)
   * ~~[新疆生产建设兵团卫生健康委员会](http://wsj.xjbt.gov.cn/xxgk/tzgg/)~~ 数据合并至新疆维吾尔自治区卫生健康委员会
 
+* [Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30183-5/fulltext)
+* [Early Transmission Dynamics in Wuhan, China, of Novel Coronavirus–Infected Pneumonia](https://www.nejm.org/doi/full/10.1056/NEJMoa2001316)
 
 
 ## 数据来源
