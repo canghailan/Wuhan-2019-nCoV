@@ -63,6 +63,7 @@ cn_day_df.rename(columns={
 cn_day_df["date"] = cn_day_df["date"].map(
     lambda x: "2020-" + x.replace(".", "-"))
 cn_day_df["country"] = "中国"
+cn_day_df = cn_day_df[cn_day_df.date >= "2020-01-20"]
 
 
 # 更新数据
