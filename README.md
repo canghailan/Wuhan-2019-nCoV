@@ -33,7 +33,7 @@
 
 ## 数据使用示例
 ```javascript
-let list = parseCSV(`date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+let data_list = parseCSV(`date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
 2020-01-16,中国,CN,,,,,45,0,15,2
 2020-01-16,中国,CN,湖北省,420000,,,45,0,15,2
 2020-01-16,中国,CN,湖北省,420000,武汉市,420100,45,0,15,2
@@ -44,8 +44,21 @@ let list = parseCSV(`date,country,countryCode,province,provinceCode,city,cityCod
 2020-01-17,中国,CN,湖北省,420000,武汉市,420100,62,0,19,2
 2020-01-18,中国,CN,,,,,198,0,24,3
 2020-01-18,中国,CN,湖北省,420000,,,121,0,24,3
-2020-01-18,中国,CN,湖北省,420000,武汉市,420100,121,0,24,3`, 
+2020-01-18,中国,CN,湖北省,420000,武汉市,420100,121,0,24,3
+2020-01-19,中国,CN,,,,,275,0,25,4
+2020-01-19,中国,CN,湖北省,420000,,,198,0,25,3
+2020-01-19,中国,CN,湖北省,420000,武汉市,420100,198,0,25,3
+2020-01-19,中国,CN,广东省,440000,,,1,0,0,0
+2020-01-19,中国,CN,广东省,440000,深圳市,440300,1,0,0,0`, 
 { confirmed: Number, suspected: Number, cured: Number, dead: Number });
+let date_list = data_list.filter(e => e.date == '2020-01-16'); // 2020-01-16所有数据
+let date_country_list = data_list.filter(e => e.date == '2020-01-16' && !e.province); // 2020-01-16所有国家级数据
+let date_province_list = data_list.filter(e => e.date == '2020-01-19' && e.province && !e.city); // 2020-01-19所有省级数据
+let date_province_city_list = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city); // 2020-01-19湖北省所有市级数据
+let date_city = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city == '武汉市'); // 2020-01-19湖北省武汉市数据
+let country_list = data_list.filter(e => e.country == '中国' && !e.province); // 中国所有时间数据
+let province_list = data_list.filter(e => e.province == '湖北省' && !e.city); // 湖北省所有时间数据
+let city_list = data_list.filter(e => e.province == '湖北省' && e.city == '武汉市'); // 湖北省武汉市所有时间数据
 ```
 
 
