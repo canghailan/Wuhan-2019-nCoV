@@ -20,20 +20,20 @@ columns = [
 ]
 
 # 读取腾讯新闻实时统计数据
-cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"
-cn_global_data = requests.get(cn_global_api).json()
-cn_global = json.loads(cn_global_data["data"])
-cn_global_df = pd.DataFrame(cn_global)
-cn_global_df.rename(columns={
-    "area": "province",
-    "confirmCount": "confirmed",
-    "suspectCount": "suspected",
-    "cure": "cured",
-    "deadCount": "dead"
-}, inplace=True)
-cn_global_df["date"] = datetime.today().strftime('%Y-%m-%d')
-cn_global_df["country"] = "中国"
-cn_global_df = pd.DataFrame(cn_global_df, columns=columns)
+# cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"
+# cn_global_data = requests.get(cn_global_api).json()
+# cn_global = json.loads(cn_global_data["data"])
+# cn_global_df = pd.DataFrame(cn_global)
+# cn_global_df.rename(columns={
+#     "area": "province",
+#     "confirmCount": "confirmed",
+#     "suspectCount": "suspected",
+#     "cure": "cured",
+#     "deadCount": "dead"
+# }, inplace=True)
+# cn_global_df["date"] = datetime.today().strftime('%Y-%m-%d')
+# cn_global_df["country"] = "中国"
+# cn_global_df = pd.DataFrame(cn_global_df, columns=columns)
 
 
 # 读取腾讯新闻实时分地区数据
@@ -51,18 +51,18 @@ cn_area_df["date"] = datetime.today().strftime('%Y-%m-%d')
 
 
 # 读取腾讯新闻日统计数据
-# cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
-# cn_day_data = requests.get(cn_day_api).json()
-# cn_day = json.loads(cn_day_data["data"])
-# cn_day_df = pd.DataFrame(cn_day)
-# cn_day_df.rename(columns={
-#     "confirm": "confirmed",
-#     "suspect": "suspected",
-#     "heal": "cured"
-# }, inplace=True)
-# cn_day_df["date"] = cn_day_df["date"].map(
-#     lambda x: "2020-" + x.replace(".", "-"))
-# cn_day_df["country"] = "中国"
+cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
+cn_day_data = requests.get(cn_day_api).json()
+cn_day = json.loads(cn_day_data["data"])
+cn_day_df = pd.DataFrame(cn_day)
+cn_day_df.rename(columns={
+    "confirm": "confirmed",
+    "suspect": "suspected",
+    "heal": "cured"
+}, inplace=True)
+cn_day_df["date"] = cn_day_df["date"].map(
+    lambda x: "2020-" + x.replace(".", "-"))
+cn_day_df["country"] = "中国"
 
 
 # 更新数据
@@ -74,7 +74,7 @@ df = pd.read_csv(csv_file)
 df["date"] = df["date"].map(
     lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
 # df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df] + report_df_list, sort=False)
-df = pd.concat([df, cn_area_df, cn_global_df], sort=False)
+df = pd.concat([df, cn_area_df, cn_day_df], sort=False)
 df["country"].fillna("", inplace=True)
 df["countryCode"].fillna("", inplace=True)
 df["province"].fillna("", inplace=True)
