@@ -94,6 +94,7 @@ ReportData # 卫健委通报整理后数据
 PIIS0140673620301835.pdf # 2019-12-01至2019-01-02实验室数据
 Wuhan-2019-nCoV.csv # CSV格式完整数据（数据格式较小，建议使用）
 Wuhan-2019-nCoV.json # JSON格式完整数据
+Wuhan-2019-nCoV.xlsx # EXCEL格式完整数据，供阅读、手工处理
 parseCSV.js # CSV转JSON
 ChinaAreaCode.csv # 中国行政区划代码，来自中华人民共和国民政部
 CountryCode.csv # 国家地区代码（ISO_3166-1）
