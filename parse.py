@@ -123,11 +123,13 @@ def parse_report(report):
     return df
 
 
+parse_date = "2020-01-31"
 for r in os.listdir("Report"):
     try:
         report = read_report(os.path.join("Report", r))
-        report_data = parse_report(report)
-        report_data.to_csv(f"""ReportData/{report.get("时间")}{report.get("省", "")}.csv""", index=False)
+        if str(report["时间"]) >= parse_date:
+            report_data = parse_report(report)
+            report_data.to_csv(f"""ReportData/{report.get("时间")}{report.get("省", "")}.csv""", index=False)
     except Exception as e:
         print(r)
         raise e
