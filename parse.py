@@ -135,6 +135,7 @@ for r in os.listdir("Report"):
 # 合并通报数据
 csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
+xlsx_file = "Wuhan-2019-nCoV.xlsx"
 dtype = {"provinceCode": str, "cityCode": str}
 df = pd.read_csv(csv_file, dtype=dtype)
 report_df_list = [pd.read_csv(os.path.join("ReportData", x), dtype=dtype) for x in sorted(os.listdir("ReportData"))]
@@ -154,3 +155,4 @@ df.drop_duplicates(
 df.sort_values(["date", "countryCode", "provinceCode", "cityCode", "city"], inplace=True)
 df.to_csv(csv_file, index=False, encoding='utf-8')
 df.to_json(json_file, orient="records", force_ascii=False)
+df.to_excel(xlsx_file, index=False)
