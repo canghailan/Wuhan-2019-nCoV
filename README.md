@@ -6,9 +6,9 @@
 
 2020-01-02至2020-01-10数据无变化。
 
-2020-01-10至2020-01-30数据来自国家、各省、武汉市卫健委疫情通告。
+2020-01-10至2020-02-05数据来自国家、各省、武汉市卫健委疫情通告（2020-01-31至2020-02-05处理中）。
 
-2020-01-31后数据从腾讯新闻接口采集，每小时57分自动更新。
+2020-02-06后数据从[今日头条](https://i.snssdk.com/ugc/hotboard_fe/hot_list/template/hot_list/forum_tab.html)[接口](https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839)采集，每小时57分自动更新。
 
 数据以CSV格式存储在版本库中，同时提供JSON格式数据。
 
@@ -51,14 +51,22 @@ let data_list = parseCSV(`date,country,countryCode,province,provinceCode,city,ci
 2020-01-19,中国,CN,广东省,440000,,,1,0,0,0
 2020-01-19,中国,CN,广东省,440000,深圳市,440300,1,0,0,0`, 
 { confirmed: Number, suspected: Number, cured: Number, dead: Number });
-let date_list = data_list.filter(e => e.date == '2020-01-16'); // 2020-01-16所有数据
-let date_country_list = data_list.filter(e => e.date == '2020-01-16' && !e.province); // 2020-01-16所有国家级数据
-let date_province_list = data_list.filter(e => e.date == '2020-01-19' && e.province && !e.city); // 2020-01-19所有省级数据
-let date_province_city_list = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city); // 2020-01-19湖北省所有市级数据
-let date_city = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city == '武汉市'); // 2020-01-19湖北省武汉市数据
-let country_list = data_list.filter(e => e.country == '中国' && !e.province); // 中国所有时间数据
-let province_list = data_list.filter(e => e.province == '湖北省' && !e.city); // 湖北省所有时间数据
-let city_list = data_list.filter(e => e.province == '湖北省' && e.city == '武汉市'); // 湖北省武汉市所有时间数据
+// 2020-01-16所有数据
+let date_list = data_list.filter(e => e.date == '2020-01-16');
+// 2020-01-16所有国家级数据
+let date_country_list = data_list.filter(e => e.date == '2020-01-16' && !e.province);
+// 2020-01-19所有省级数据
+let date_province_list = data_list.filter(e => e.date == '2020-01-19' && e.province && !e.city);
+// 2020-01-19湖北省所有市级数据
+let date_province_city_list = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city);
+// 2020-01-19湖北省武汉市数据
+let date_city = data_list.filter(e => e.date == '2020-01-19' && e.province == '湖北省' && e.city == '武汉市');
+// 中国所有时间数据
+let country_list = data_list.filter(e => e.country == '中国' && !e.province);
+// 湖北省所有时间数据
+let province_list = data_list.filter(e => e.province == '湖北省' && !e.city);
+// 湖北省武汉市所有时间数据
+let city_list = data_list.filter(e => e.province == '湖北省' && e.city == '武汉市'); 
 ```
 
 
@@ -142,11 +150,13 @@ TODO:
 
 ## 数据来源
 
-* [腾讯新闻](https://news.qq.com//zt2020/page/feiyan.htm)
-  * [日统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts)
-  * [实时全国统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars)
-  * [实时省、市统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts)
+* [今日头条](https://i.snssdk.com/ugc/hotboard_fe/hot_list/template/hot_list/forum_tab.html)
+  * [数据接口](https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839)
 * [丁香医生](https://3g.dxy.cn/newh5/view/pneumonia)
+* ~~[腾讯新闻](https://news.qq.com//zt2020/page/feiyan.htm)~~
+  * ~~[日统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts)~~
+  * ~~[实时全国统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars)~~
+  * ~~[实时省、市统计](https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts)~~
 
 
 
@@ -155,6 +165,7 @@ TODO:
 export PIPENV_VENV_IN_PROJECT=1 && pipenv install
 pipenv run python dataset.py # 手动更新
 # pipenv run python cron.py 自动定时更新
+# pipenv run python python.py 解析卫健委通报，并更新数据
 ```
 
 

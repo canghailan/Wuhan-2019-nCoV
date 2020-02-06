@@ -19,69 +19,105 @@ columns = [
     "dead"
 ]
 
-# 读取腾讯新闻实时统计数据
-# cn_global_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_global_vars"
-# cn_global_data = requests.get(cn_global_api).json()
-# cn_global = json.loads(cn_global_data["data"])
-# cn_global_df = pd.DataFrame(cn_global)
-# cn_global_df.rename(columns={
-#     "area": "province",
-#     "confirmCount": "confirmed",
-#     "suspectCount": "suspected",
-#     "cure": "cured",
-#     "deadCount": "dead"
-# }, inplace=True)
-# cn_global_df["date"] = datetime.today().strftime('%Y-%m-%d')
-# cn_global_df["country"] = "中国"
-# cn_global_df = pd.DataFrame(cn_global_df, columns=columns)
+# 读取头条数据
+use_toutiao_date = "2020-01-31"
+toutiao_forum = requests.get("https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839").json()
+toutiao_data = json.loads(toutiao_forum["forum"]["extra"]["ncov_string_list"])
 
+data_list = []
+data_date = datetime.fromtimestamp(toutiao_data["updateTime"]).strftime('%Y-%m-%d')
+for province in toutiao_data["provinces"]:
+    data_list.append({
+        "date": data_date,
+        "countryCode": "CN",
+        "country": "中国",
+        "provinceCode": province["id"].ljust(6, '0'),
+        "province": province["name"],
+        "cityCode": "",
+        "city": "",
+        "confirmed": province["confirmedNum"],
+        "suspected": 0,
+        "cured": province["curesNum"],
+        "dead": province["deathsNum"]
+    })
+    for city in province["cities"]:
+        data_list.append({
+            "date": data_date,
+            "countryCode": "CN",
+            "country": "中国",
+            "provinceCode": province["id"].ljust(6, '0'),
+            "province": province["name"],
+            "cityCode": city["id"].ljust(6, '0'),
+            "city": city["name"],
+            "confirmed": city["confirmedNum"],
+            "suspected": 0,
+            "cured": city["curesNum"],
+            "dead": city["deathsNum"]
+        })
+    for province_history in province["series"]:
+        if province_history["date"] >= use_toutiao_date:
+            data_list.append({
+                "date": province_history["date"],
+                "countryCode": "CN",
+                "country": "中国",
+                "provinceCode": province["id"].ljust(6, '0'),
+                "province": province["name"],
+                "cityCode": "",
+                "city": "",
+                "confirmed": province_history["confirmedNum"],
+                "suspected": 0,
+                "cured": province_history["curesNum"],
+                "dead": province_history["deathsNum"]
+            })
 
-# 读取腾讯新闻实时分地区数据
-cn_area_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts"
-cn_area_data = requests.get(cn_area_api).json()
-cn_area = json.loads(cn_area_data["data"])
-cn_area_df = pd.DataFrame(cn_area)
-cn_area_df.rename(columns={
-    "area": "province",
-    "confirm": "confirmed",
-    "suspect": "suspected",
-    "heal": "cured"
-}, inplace=True)
-cn_province_df = pd.DataFrame(cn_area_df[cn_area_df.country == "中国"]
-                              .groupby(["country", "province"], as_index=False)
-                              .sum())
-cn_area_df = pd.concat([cn_area_df, cn_province_df], sort=False)
-cn_area_df.drop_duplicates(
-    subset=["country", "province", "city"], inplace=True)
-cn_area_df["date"] = datetime.today().strftime('%Y-%m-%d')
+data_list.append({
+    "date": data_date,
+    "countryCode": "CN",
+    "country": "中国",
+    "provinceCode": "",
+    "province": "",
+    "cityCode": "",
+    "city": "",
+    "confirmed": toutiao_data["nationTotal"]["confirmedTotal"],
+    "suspected": toutiao_data["nationTotal"]["suspectedTotal"],
+    "cured": toutiao_data["nationTotal"]["curesTotal"],
+    "dead": toutiao_data["nationTotal"]["deathsTotal"]
+})
 
+for cn_history in toutiao_data["nationwide"]:
+    if cn_history["date"] >= use_toutiao_date:
+        data_list.append({
+            "date": cn_history["date"],
+            "countryCode": "CN",
+            "country": "中国",
+            "provinceCode": "",
+            "province": "",
+            "cityCode": "",
+            "city": "",
+            "confirmed": cn_history["confirmedNum"],
+            "suspected": cn_history["suspectedNum"],
+            "cured": cn_history["curesNum"],
+            "dead": cn_history["deathsNum"]
+        })
 
-# 读取腾讯新闻日统计数据
-cn_day_api = "https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_cn_day_counts"
-cn_day_data = requests.get(cn_day_api).json()
-cn_day = json.loads(cn_day_data["data"])
-cn_day_df = pd.DataFrame(cn_day)
-cn_day_df.rename(columns={
-    "confirm": "confirmed",
-    "suspect": "suspected",
-    "heal": "cured"
-}, inplace=True)
-cn_day_df["date"] = cn_day_df["date"].map(
-    lambda x: "2020-" + x.replace(".", "-"))
-cn_day_df["country"] = "中国"
-cn_day_df = cn_day_df[cn_day_df.date >= "2020-01-20"]
-
+for country in toutiao_data["world"]:
+    data_list.append({
+        "date": data_date,
+        "country": country["country"],
+        "confirmed": country["confirmedNum"],
+        "suspected": country["suspectedNum"],
+        "cured": country["curesNum"],
+        "dead": country["deathsNum"]
+    })
 
 # 更新数据
 csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
 
 df = pd.read_csv(csv_file)
-# report_df_list = [pd.read_csv(os.path.join("ReportData", x)) for x in sorted(os.listdir("ReportData"))]
 df["date"] = df["date"].map(
     lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
-# df = pd.concat([df, cn_area_df, cn_global_df, cn_day_df] + report_df_list, sort=False)
-df = pd.concat([df, cn_area_df, cn_day_df], sort=False)
+df = pd.concat([df, pd.DataFrame(data_list)], sort=False)
 df["country"].fillna("", inplace=True)
 df["countryCode"].fillna("", inplace=True)
 df["province"].fillna("", inplace=True)
