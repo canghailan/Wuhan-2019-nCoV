@@ -33,7 +33,8 @@
 
 ## 数据使用示例
 ```javascript
-let data_list = parseCSV(`date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+let data_list = parseCSV(
+`date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
 2020-01-16,中国,CN,,,,,45,0,15,2
 2020-01-16,中国,CN,湖北省,420000,,,45,0,15,2
 2020-01-16,中国,CN,湖北省,420000,武汉市,420100,45,0,15,2
