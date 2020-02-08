@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-22,中国,CN,陕西省,610000,,,4,,,
+2020-01-22,中国,CN,陕西省,610000,西安市,610100,2,,,
+2020-01-22,中国,CN,陕西省,610000,咸阳市,610400,1,,,
+2020-01-22,中国,CN,陕西省,610000,延安市,610600,1,,,
