@@ -6,11 +6,11 @@
 
 2020-01-02至2020-01-10数据无变化。
 
-2020-01-10至2020-02-06数据来自国家、各省、武汉市卫健委疫情通告（2020-01-31至2020-02-05处理中，已完成全国、湖北、北京、天津缺2月5日、河北、山西、内蒙古、辽宁、吉林、黑龙江、上海）。
+2020-01-10至2020-02-06数据来自国家、各省、武汉市卫健委疫情通告。
 
-2020-02-07后数据从[今日头条](https://i.snssdk.com/ugc/hotboard_fe/hot_list/template/hot_list/forum_tab.html)[接口](https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839)采集，每小时57分自动更新。国家、省级历史数据会根据卫健委数据更新，市级历史数据与卫健委数据有差异（略滞后）。
+2020-02-07后数据从[今日头条](https://i.snssdk.com/ugc/hotboard_fe/hot_list/template/hot_list/forum_tab.html)[接口](https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839)采集，每小时57分自动更新。国家、省级历史数据会根据卫健委数据更新，市级历史数据与卫健委数据有差异（略小于）。
 
-数据以CSV格式存储在版本库中，同时提供JSON格式数据。
+数据以CSV格式存储在版本库中，同时提供JSON及EXCEL格式数据。
 
 建议读取CSV格式数据（体积较小），通过[脚本](https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/parseCSV.js)转换为JSON格式。
 
