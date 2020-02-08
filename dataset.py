@@ -20,7 +20,7 @@ columns = [
 ]
 
 # 读取头条数据
-use_toutiao_date = "2020-02-06"
+use_toutiao_date = "2020-02-07"
 toutiao_forum = requests.get("https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839").json()
 toutiao_data = json.loads(toutiao_forum["forum"]["extra"]["ncov_string_list"])
 
