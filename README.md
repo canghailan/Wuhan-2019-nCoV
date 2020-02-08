@@ -132,7 +132,7 @@ TODO:
   * [河南省卫生健康委员会](http://wsjkw.henan.gov.cn/channels/854.shtml)
   * [湖南省卫生健康委员会](http://wjw.hunan.gov.cn/wjw/xxgk/gzdt/zyxw_1/index.html)
   * [广东省卫生健康委员会](http://wsjkw.gd.gov.cn/xxgzbdfk/yqtb/)
-  * [广西壮族自治区卫生健康委员会](http://wsjkw.gxzf.gov.cn/zhuantiqu/ncov/)
+  * [广西壮族自治区卫生健康委员会](http://wsjkw.gxzf.gov.cn/zhuantiqu/ncov/ncovyqtb/)
   * [海南省卫生健康委员会](http://wst.hainan.gov.cn/swjw/rdzt/yqfk/)
   * [重庆市卫生健康委员会](http://wsjkw.cq.gov.cn/yqxxyqtb/)
   * [四川省卫生健康委员会](http://wsjkw.sc.gov.cn/scwsjkw/gggs/tygl.shtml)
