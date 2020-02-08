@@ -1,0 +1,5 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-02-06,中国,CN,,,,,31161,26359,1540,636
+2020-02-06,中国,CN,台湾省,710000,,,16,,,1
+2020-02-06,中国,CN,香港特别行政区,810000,,,24,,,1
+2020-02-06,中国,CN,澳门特别行政区,820000,,,10,,,1
