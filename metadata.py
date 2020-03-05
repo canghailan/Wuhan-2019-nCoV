@@ -39,6 +39,9 @@ def get_china_city_code(provinceCode, city, cityCode=None):
         return cityCode
     if not city or not provinceCode:
         return ""
+    result = china_area_code.loc[china_area_code["province_code"].isin([provinceCode]) & ~china_area_code["is_province"] & china_area_code["name"].isin([city])]["code"]
+    if (len(result.values) > 0):
+        return result.values[0]
     result = china_area_code.loc[china_area_code["province_code"].isin([provinceCode]) & ~china_area_code["is_province"] & china_area_code["name"].str.contains(city)]["code"]
     if (len(result.values) > 0):
         return result.values[0]

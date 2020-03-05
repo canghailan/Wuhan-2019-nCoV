@@ -123,7 +123,7 @@ def parse_report(report):
     return df
 
 
-parse_date = "2020-01-31"
+parse_date = "2020-01-25"
 for r in os.listdir("Report"):
     try:
         report = read_report(os.path.join("Report", r))
