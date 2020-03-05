@@ -139,6 +139,7 @@ csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
 xlsx_file = "Wuhan-2019-nCoV.xlsx"
 dtype = {"provinceCode": str, "cityCode": str}
+
 df = pd.read_csv(csv_file, dtype=dtype)
 report_df_list = [pd.read_csv(os.path.join("ReportData", x), dtype=dtype) for x in sorted(os.listdir("ReportData"))]
 df = pd.concat([df] + report_df_list, sort=False)

@@ -22,26 +22,30 @@ def get_country_code(name):
 
 
 @lru_cache(maxsize=64)
-def get_china_province_code(name):
-    if not name:
+def get_china_province_code(province, provinceCode=None):
+    if provinceCode:
+        return provinceCode
+    if not province:
         return ""
-    result = china_area_code.loc[china_area_code["is_province"] & china_area_code["name"].str.contains(name)]["code"]
+    result = china_area_code.loc[china_area_code["is_province"] & china_area_code["name"].str.contains(province)]["code"]
     if (len(result.values) > 0):
         return result.values[0]
     return ""
 
 
 @lru_cache(maxsize=1024)
-def get_china_city_code(province_code, name):
-    if not name or not province_code:
+def get_china_city_code(provinceCode, city, cityCode=None):
+    if cityCode:
+        return cityCode
+    if not city or not provinceCode:
         return ""
-    result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & ~china_area_code["is_province"] & china_area_code["name"].str.contains(name)]["code"]
+    result = china_area_code.loc[china_area_code["province_code"].isin([provinceCode]) & ~china_area_code["is_province"] & china_area_code["name"].str.contains(city)]["code"]
     if (len(result.values) > 0):
         return result.values[0]
 
-    for i in range(1, len(name)):
-        fuzzy_name = name[:-i] + ".*" + ".*".join(name[-i:])
-        result = china_area_code.loc[china_area_code["province_code"].isin([province_code]) & ~china_area_code["is_province"] & china_area_code["name"].str.match(fuzzy_name)]["code"]
+    for i in range(1, len(city)):
+        fuzzy_name = city[:-i] + ".*" + ".*".join(city[-i:])
+        result = china_area_code.loc[china_area_code["province_code"].isin([provinceCode]) & ~china_area_code["is_province"] & china_area_code["name"].str.match(fuzzy_name)]["code"]
         if (len(result.values) > 0):
             # print(f"""{province_code} {fuzzy_name} -> {",".join(result.values)}""")
             return result.values[0]

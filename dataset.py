@@ -118,8 +118,9 @@ for country in toutiao_data["world"]:
 csv_file = "Wuhan-2019-nCoV.csv"
 json_file = "Wuhan-2019-nCoV.json"
 xlsx_file = "Wuhan-2019-nCoV.xlsx"
+dtype = {"provinceCode": str, "cityCode": str}
 
-df = pd.read_csv(csv_file)
+df = pd.read_csv(csv_file, dtype=dtype)
 df["date"] = df["date"].map(
     lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
 df = pd.concat([df, pd.DataFrame(data_list)], sort=False)
@@ -134,12 +135,14 @@ df["suspected"] = df["suspected"].fillna(0).astype(int)
 df["cured"] = df["cured"].fillna(0).astype(int)
 df["dead"] = df["dead"].fillna(0).astype(int)
 # 修正数据
-df["countryCode"] = df["country"].map(get_country_code)
-df["provinceCode"] = df["province"].map(get_china_province_code)
+df["countryCode"] = df.apply(
+    lambda x: get_country_code(x.country), axis=1)
+df["provinceCode"] = df.apply(
+    lambda x: get_china_province_code(x.province, x.provinceCode), axis=1)
 df["province"] = df.apply(
     lambda x: get_china_area_name(x.provinceCode, x.province), axis=1)
 df["cityCode"] = df.apply(
-    lambda x: get_china_city_code(x.provinceCode, x.city), axis=1)
+    lambda x: get_china_city_code(x.provinceCode, x.city, x.cityCode), axis=1)
 df["city"] = df.apply(
     lambda x: get_china_area_name(x.cityCode, x.city), axis=1)
 df.drop_duplicates(
