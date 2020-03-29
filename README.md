@@ -1,5 +1,7 @@
 # 2019-nCoV 全量每日统计数据（支持接口读取）
 
+Test
+
 本项目记录了2019-12-01日至今，每日精确到国家、省、市的确诊、疑似、治愈、死亡人数。
 
 2019-12-01至2020-01-02数据来自[asycns](https://github.com/asycns)提供的[实验室确诊数据](https://github.com/canghailan/Wuhan-2019-nCoV/issues/1)([实验室论文原文](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30183-5/fulltext))。
