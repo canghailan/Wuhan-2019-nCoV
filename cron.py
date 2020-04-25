@@ -8,8 +8,7 @@ def update_data():
     cmds = [
         ["git", "pull"],
         ["pipenv", "run", "python", "dataset.py"],
-        ["git", "add", "."],
-        ["git", "commit", "-m", f"""{now}自动更新"""],
+        ["git", "commit", "-am", f"""{now}自动更新"""],
         ["git", "push"]
     ]
     for cmd in cmds:
@@ -17,6 +16,6 @@ def update_data():
         print(subprocess.check_output(cmd).decode())
 
 
-scheduler = BlockingScheduler()
+scheduler = BlockingScheduler(timezone="Asia/Shanghai")
 scheduler.add_job(update_data, 'cron', minute="57")
 scheduler.start()
