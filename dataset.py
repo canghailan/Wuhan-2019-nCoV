@@ -1,23 +1,11 @@
 import json
+import os
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import pandas as pd
-from metadata import get_country_code, get_china_province_code, get_china_city_code, get_china_area_name
+import data_process
 
-columns = [
-    "date",
-    "country",
-    "countryCode",
-    "province",
-    "provinceCode",
-    "city",
-    "cityCode",
-    "confirmed",
-    "suspected",
-    "cured",
-    "dead"
-]
 
 # 读取头条数据
 use_toutiao_date = "2020-02-09"
@@ -114,42 +102,27 @@ for country in toutiao_data["world"]:
         "dead": country["deathsNum"]
     })
 
-# 更新数据
-csv_file = "Wuhan-2019-nCoV.csv"
-json_file = "Wuhan-2019-nCoV.json"
-xlsx_file = "Wuhan-2019-nCoV.xlsx"
-dtype = {"provinceCode": str, "cityCode": str}
 
-df = pd.read_csv(csv_file, dtype=dtype)
-df["date"] = df["date"].map(
-    lambda x: "-".join([i.zfill(2) for i in re.split("\\D+", x)]))
-df = pd.concat([df, pd.DataFrame(data_list)], sort=False)
-df["country"].fillna("", inplace=True)
-df["countryCode"].fillna("", inplace=True)
-df["province"].fillna("", inplace=True)
-df["provinceCode"].fillna("", inplace=True)
-df["city"].fillna("", inplace=True)
-df["cityCode"].fillna("", inplace=True)
-df["confirmed"] = df["confirmed"].fillna(0).astype(int)
-df["suspected"] = df["suspected"].fillna(0).astype(int)
-df["cured"] = df["cured"].fillna(0).astype(int)
-df["dead"] = df["dead"].fillna(0).astype(int)
-# 修正数据
-df["countryCode"] = df.apply(
-    lambda x: get_country_code(x.country), axis=1)
-df["provinceCode"] = df.apply(
-    lambda x: get_china_province_code(x.province, x.provinceCode), axis=1)
-df["province"] = df.apply(
-    lambda x: get_china_area_name(x.provinceCode, x.province), axis=1)
-df["cityCode"] = df.apply(
-    lambda x: get_china_city_code(x.provinceCode, x.city, x.cityCode), axis=1)
-df["city"] = df.apply(
-    lambda x: get_china_area_name(x.cityCode, x.city), axis=1)
-df.drop_duplicates(
-    subset=["date", "country", "province", "city"], keep="last", inplace=True)
-df.sort_values(["date", "countryCode", "provinceCode", "cityCode", "city"], inplace=True)
-df.to_csv(csv_file, index=False, encoding='utf-8')
-df.to_json(json_file, orient="records", force_ascii=False)
-df.to_excel(xlsx_file, index=False)
+df = pd.DataFrame(data_list)
+df = data_process.normalize(df)
+
+
+csv_date = os.path.join("Data", f"{data_date}.csv")
+json_date = os.path.join("Data", f"{data_date}.json")
+df_date = df[df["date"] == data_date]
+df_date.to_csv(csv_date, index=False, encoding='utf-8')
+with open(json_date, "w", encoding="utf-8") as f:
+    df_date.to_json(f, orient="records", force_ascii=False)
+
+
+yesterday = datetime.strftime(datetime.strptime(data_date, "%Y-%m-%d") - timedelta(days=1), "%Y-%m-%d")
+csv_yesterday = os.path.join("Data", f"{yesterday}.csv")
+json_yesterday = os.path.join("Data", f"{yesterday}.json")
+df_yesterday = pd.read_csv(csv_yesterday, dtype=data_process.data_dtype)
+df_yesterday = pd.concat([df_yesterday, pd.DataFrame(df[df["date"] == csv_yesterday])], sort=False)
+df_yesterday = data_process.normalize(df_yesterday)
+df_yesterday.to_csv(csv_yesterday, index=False, encoding='utf-8')
+with open(json_yesterday, "w", encoding="utf-8") as f:
+    df_yesterday.to_json(f, orient="records", force_ascii=False)
 
 print(f"""{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}数据更新成功""")

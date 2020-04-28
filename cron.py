@@ -8,6 +8,9 @@ def update_data():
     cmds = [
         ["git", "pull"],
         ["pipenv", "run", "python", "dataset.py"],
+        ["pipenv", "run", "python", "data-join.py"],
+        ["pipenv", "run", "python", "data-to-json.py"],
+        ["pipenv", "run", "python", "data-to-xlsx.py"],
         ["git", "commit", "-am", f"""{now}自动更新"""],
         ["git", "push"]
     ]
