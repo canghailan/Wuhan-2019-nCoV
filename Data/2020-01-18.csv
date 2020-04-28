@@ -1,0 +1,4 @@
+date,country,countryCode,province,provinceCode,city,cityCode,confirmed,suspected,cured,dead
+2020-01-18,中国,CN,,,,,198,0,24,3
+2020-01-18,中国,CN,湖北省,420000,,,121,0,24,3
+2020-01-18,中国,CN,湖北省,420000,武汉市,420100,121,0,24,3
