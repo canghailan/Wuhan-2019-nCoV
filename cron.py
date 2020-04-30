@@ -11,7 +11,8 @@ def update_data():
         ["pipenv", "run", "python", "data-join.py"],
         ["pipenv", "run", "python", "data-to-json.py"],
         # ["pipenv", "run", "python", "data-to-xlsx.py"],
-        ["git", "commit", "-am", f"""{now}自动更新"""],
+        ["git", "add", "."],
+        ["git", "commit", "-m", f"""{now}自动更新"""],
         ["git", "push"]
     ]
     for cmd in cmds:
