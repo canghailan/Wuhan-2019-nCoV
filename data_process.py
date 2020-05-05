@@ -18,6 +18,7 @@ data_columns = [
 data_dtype = {"provinceCode": str, "cityCode": str}
 
 def normalize(df):
+    df = df.reindex(columns=data_columns, copy=False)
     df["country"].fillna("", inplace=True)
     df["countryCode"].fillna("", inplace=True)
     df["province"].fillna("", inplace=True)
