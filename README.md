@@ -166,7 +166,10 @@ TODO:
 ## 数据更新
 ```shell
 export PIPENV_VENV_IN_PROJECT=1 && pipenv install
-pipenv run python dataset.py # 手动更新
+pipenv run python dataset.py # 手动更新当天数据
+pipenv run python data-join.py # 合并所有日期数据
+pipenv run python data-to-json.py # 生成JSON数据
+pipenv run python data-to-xlsx.py # 生成XLSX数据
 # pipenv run python cron.py 自动定时更新
 # pipenv run python python.py 解析卫健委通报，并更新数据
 ```
