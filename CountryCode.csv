@@ -27,7 +27,7 @@ BM,百慕大,Bermuda
 BT,不丹,Bhutan
 BO,玻利维亚,Bolivia (Plurinational State of)
 BQ,荷兰加勒比区,"Bonaire, Sint Eustatius and Saba"
-BA,波斯尼亚和黑塞哥维那,Bosnia and Herzegovina
+BA,波黑,Bosnia and Herzegovina
 BW,博茨瓦纳,Botswana
 BV,布韦岛,Bouvet Island
 BR,巴西,Brazil
@@ -71,7 +71,7 @@ ER,厄立特里亚,Eritrea
 EE,爱沙尼亚,Estonia
 SZ,斯威士兰,Eswatini
 ET,埃塞俄比亚,Ethiopia
-FK,福克兰群岛,Falkland Islands (Malvinas)
+FK,福克兰群岛（马尔维纳斯）,Falkland Islands (Malvinas)
 FO,法罗群岛,Faroe Islands
 FJ,斐济,Fiji
 FI,芬兰,Finland
@@ -91,7 +91,7 @@ GD,格林纳达,Grenada
 GP,瓜德罗普,Guadeloupe
 GU,关岛,Guam
 GT,危地马拉,Guatemala
-GG,根西,Guernsey
+GG,格恩西岛,Guernsey
 GN,几内亚,Guinea
 GW,几内亚比绍,Guinea-Bissau
 GY,圭亚那,Guyana
@@ -107,12 +107,12 @@ ID,印度尼西亚,Indonesia
 IR,伊朗,Iran (Islamic Republic of)
 IQ,伊拉克,Iraq
 IE,爱尔兰,Ireland
-IM,马恩岛,Isle of Man
+IM,英国属地曼岛,Isle of Man
 IL,以色列,Israel
 IT,意大利,Italy
 JM,牙买加,Jamaica
 JP,日本,Japan
-JE,泽西,Jersey
+JE,泽西岛,Jersey
 JO,约旦,Jordan
 KZ,哈萨克斯坦,Kazakhstan
 KE,肯尼亚,Kenya
@@ -139,14 +139,14 @@ ML,马里,Mali
 MT,马耳他,Malta
 MH,马绍尔群岛,Marshall Islands
 MQ,马提尼克,Martinique
-MR,毛里塔尼亚,Mauritania
+MR,毛利塔尼亚,Mauritania
 MU,毛里求斯,Mauritius
 YT,马约特,Mayotte
 MX,墨西哥,Mexico
 FM,密克罗尼西亚联邦,Micronesia (Federated States of)
 MD,摩尔多瓦,Moldova (Republic of)
 MC,摩纳哥,Monaco
-MN,蒙古国,Mongolia
+MN,蒙古,Mongolia
 ME,黑山,Montenegro
 MS,蒙特塞拉特,Montserrat
 MA,摩洛哥,Morocco
@@ -164,7 +164,7 @@ NG,尼日利亚,Nigeria
 NU,纽埃,Niue
 NF,诺福克岛,Norfolk Island
 MK,北马其顿,North Macedonia
-MP,北马里亚纳群岛,Northern Mariana Islands
+MP,北马里亚纳,Northern Mariana Islands
 NO,挪威,Norway
 OM,阿曼,Oman
 PK,巴基斯坦,Pakistan
