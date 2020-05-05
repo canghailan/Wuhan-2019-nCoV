@@ -111,6 +111,7 @@ TODO:
 
 ## 疫情通报（原始数据）
 
+* [World Health Organization](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports)
 * [中华人民共和国国家卫生健康委员会](http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml)
   * [湖北省卫生健康委员会](http://wjw.hubei.gov.cn/bmdt/ztzl/fkxxgzbdgrfyyq/xxfb/)
     * [武汉市卫生健康委员会](http://wjw.wuhan.gov.cn/front/web/list3rd/no/802)
